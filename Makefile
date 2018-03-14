@@ -1,3 +1,4 @@
+
 dotfiles=~/.dotfiles
 
 BASH_FILES := $(shell cd $(dotfiles)/bash; ls)
