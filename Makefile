@@ -1,6 +1,7 @@
 
 dotfiles=~/.dotfiles
 
+VIM_FILES := $(shell cd $(dotfiles)/vim; ls)
 BASH_FILES := $(shell cd $(dotfiles)/bash; ls)
 GIT_FILES := $(shell cd $(dotfiles)/git; ls)
 
@@ -9,9 +10,7 @@ all: help
 link: link-vim link-git link-bash   ## Link all dotfiles to their respective locations
 
 link-vim:
-	@cd ~ && ln -nfs $(dotfiles)/vim/ .vim; \
-				ln -nfs $(dotfiles)/vim/vimrc .vimrc; \
-				ln -nfs $(dotfiles)/vim/gvimrc .gvimrc
+	@cd ~ && for file in $(VIM_FILES); do ln -nfs .dotfiles/vim/$$file .$$file; done
 
 link-git:
 	@cd ~ && for file in $(GIT_FILES); do ln -nfs .dotfiles/git/$$file .$$file; done
